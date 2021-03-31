@@ -52,6 +52,7 @@ for i = 1:num*10
     mean_digits(i) = mean(mean(digit)); % Muchas columnas con solo ceros, ¿recortar?
     std_digits(i) = mean(std(digit)); % mean or std
 end
+% ¿Columna o un solo dato? Ceros
 mean_data = mean(mean_digits);
 std_data = std(std_digits);
 % Data normalization
@@ -60,10 +61,13 @@ for i = 1:num*10 % Números usados
     % Guardado de los números
     for m = 1:N
         for j = 1:N
-            digit(m,j) = (Trainnumbers.image((m-1)*N+j,k) - mean_data)/std_data;
+            digit(m,j) = Trainnumbers.image((m-1)*N+j,k)*std_data + mean_data; % Cambios
         end
     end
 end
+% 1D coordinates of the normalized test data when projected on the PCA
+% sub-space
+[transMatc,Diag] = eig(cov(pn')); % Datos 
 % Mean squared error
 % MSE = N*immse(); % Mejor 
 %% TASK 2 - Using k-NN
