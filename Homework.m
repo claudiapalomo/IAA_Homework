@@ -1,5 +1,4 @@
 %% HOMEWORK
-%hgfjdklkjvk
 %% Data loading
 load('Trainnumbers.mat')
 %% Digit extraction and number representation
